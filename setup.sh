@@ -168,7 +168,7 @@ errchk
 mount --mkdir /dev/"$disk""$p"1 /mnt/gentoo/efi
 errchk
 cls
-echo "download stage3.."
+echo "downloading stage3..."
 download &> /dev/null
 untar &> /dev/null
 makeconf
