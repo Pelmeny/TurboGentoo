@@ -59,13 +59,13 @@ echo "installing gentoo"
 
   if [ "$choice" == "1" ]
   then
-    flags=-vg
+    flags=-g
     end=1
   fi
 
   if [ "$choice" == "2" ]
   then
-    flags=-v
+    flags=''
     end=1
     echo -e "binary? good luck))\n"
   fi
@@ -79,7 +79,7 @@ echo "installing gentoo"
   eselect locale set 2 
   touch /etc/portage/package.use/installkernel
   echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/installkernel
-  emerge -vg sys-kernel/gentoo-kernel-bin
+  emerge -avg sys-kernel/gentoo-kernel-bin
   read -r -p "hostname: " hostname
   echo $hostname >> /etc/hostname
   emerge -av net-misc/dhcpcd
