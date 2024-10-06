@@ -105,11 +105,7 @@ function install
 
   echo "chroot"
   cp ./tochroot.sh /mnt/gentoo/ 
-  arch-chroot /mnt/gentoo '
-  source /etc/profile
-  export PS1="(chroot) ${PS1}"
-  sh ./tochroot.sh
-'
+  arch-chroot /mnt/gentoo sh /tochroot.sh
 }
 one='\e[0;91m'
 two='\e[0;92m'
