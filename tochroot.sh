@@ -25,7 +25,7 @@ echo "installing gentoo"
   end=0
 
   echo
-
+cls
   while [ $end -ne "1" ]
   do
   echo "select profile"
