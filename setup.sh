@@ -114,7 +114,9 @@ function install
   mount --make-rslave /mnt/gentoo/dev 
   mount --bind /run /mnt/gentoo/run
   mount --make-slave /mnt/gentoo/run
-  arch-chroot /mnt/gentoo -c ' 
+  chroot /mnt/gentoo -c '
+  source /etc/profile
+  export PS1="(chroot) ${PS1}"
   sh ./tochroot.sh
 '
 }
