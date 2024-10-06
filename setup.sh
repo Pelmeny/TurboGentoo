@@ -114,8 +114,8 @@ function install
   mount --make-rslave /mnt/gentoo/dev 
   mount --bind /run /mnt/gentoo/run
   mount --make-slave /mnt/gentoo/run
-  mount --bind /lib /mnt/gentoo/lib
-  mount --bind /lib64 /mnt/gentoo/lib64
+  mount -o /lib /mnt/gentoo/lib
+  mount -o /lib64 /mnt/gentoo/lib
   chroot /mnt/gentoo /bin/bash -c '
   source /etc/profile
   export PS1="(chroot) ${PS1}"
