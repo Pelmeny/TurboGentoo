@@ -75,7 +75,7 @@ cls
   done
 cls
   read -n 1 -s -r -p "Press any key to CHAGE THE @WORLD"
-  emerge $flags --update --deep --newuse @world
+  emerge $flags --update --deep --newuse @world &> /dev/null
   echo "UTC" > /etc/timezone
   echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
   locale-gen 
