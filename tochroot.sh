@@ -16,7 +16,7 @@ echo -e "${white}"
 echo "installing gentoo"
   emerge-webrsync
   getuto
-  emerge -vg app-portage/mirrorselect app-portage/cpuid2cpuflags sys-boot/grub efibootmgr
+  emerge -g app-portage/mirrorselect app-portage/cpuid2cpuflags sys-boot/grub efibootmgr
   mirrorselect -i -o >> /etc/portage/make.conf
   end=0
 
@@ -66,7 +66,7 @@ echo "installing gentoo"
   then
     flags=''
     end=1
-    echo -e "binary? good luck))\n"
+    echo -e "nonbinary? good luck))\n"
   fi
   done
 
@@ -78,10 +78,10 @@ echo "installing gentoo"
   eselect locale set 2 
   touch /etc/portage/package.use/installkernel
   echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/installkernel
-  emerge -avg sys-kernel/gentoo-kernel-bin
+  emerge -vg --ask y sys-kernel/gentoo-kernel-bin
   read -r -p "hostname: " hostname
   echo $hostname >> /etc/hostname
-  emerge -av net-misc/dhcpcd
+  emerge -v --ask y net-misc/dhcpcd
   rc-update add dhcpcd default
   echo "enter root password"
   passwd 
