@@ -33,7 +33,7 @@ else
     gentoo
   else
     echo -e "${red}warning: Support only gentoo-livecd and archlinux-livecd"
-    echo -e "${white}attention: if you want to continue, install git, cfdisk, archinstall-scripts(arch-chroot, genfstab) and wget to your OS and type YES"
+    echo -e "${white}attention: if you want to continue, install git, cfdisk, archinstall-scripts(genfstab) and wget to your OS and type YES"
     read -r -p "type: " yes 
     if [[ "$yes" != 'YES' ]]
     then
