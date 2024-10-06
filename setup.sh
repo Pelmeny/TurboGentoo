@@ -117,7 +117,7 @@ function install
   cp -a /usr /mnt/gentoo/
   cp -a /lib /mnt/gentoo/
   cp -a /lib64/ /mnt/gentoo/
-  chroot /mnt/gentoo -c '
+  chroot /mnt/gentoo /bin/bash -c '
   source /etc/profile
   export PS1="(chroot) ${PS1}"
   sh ./tochroot.sh
