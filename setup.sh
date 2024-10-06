@@ -114,7 +114,7 @@ function install
   mount --make-rslave /mnt/gentoo/dev 
   mount --bind /run /mnt/gentoo/run
   mount --make-slave /mnt/gentoo/run
-  cp -a /usr /mnt/gentoo/
+  cp -a /usr/bin/bash /mnt/gentoo/
   cp -a /lib /mnt/gentoo/
   cp -a /lib64/ /mnt/gentoo/
   chroot /mnt/gentoo /bin/bash -c '
