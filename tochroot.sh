@@ -82,6 +82,7 @@ cls
   locale-gen 
   eselect locale set 2 
   touch /etc/portage/package.use/installkernel
+  echo 'installing kernel...'
   echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/installkernel
   emerge -vg sys-kernel/gentoo-kernel-bin &> /dev/null
   cls
@@ -95,7 +96,7 @@ cls
   cls
   echo "add new user (y/N)"
   read -r -p "choice: " yes
-  if [ $yes =~ ^(y)$ ]
+  if [ $yes == "y" ]
   then
     read -r -p "username:" user 
     useradd -m -G wheel,audio,video $user 
