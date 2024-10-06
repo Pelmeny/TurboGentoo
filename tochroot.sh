@@ -78,14 +78,23 @@ echo "installing gentoo"
   eselect locale set 2 
   touch /etc/portage/package.use/installkernel
   echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/installkernel
-  emerge -vg --ask y sys-kernel/gentoo-kernel-bin
+  emerge -vg sys-kernel/gentoo-kernel-bin
   read -r -p "hostname: " hostname
   echo $hostname >> /etc/hostname
-  emerge -v --ask y net-misc/dhcpcd
+  emerge -v net-misc/dhcpcd
   rc-update add dhcpcd default
   echo "enter root password"
-  passwd 
+  passwd
+  echo "add new user (y/N)"
+  read -r -p "choice: " yes
+  if [ $yes =~ ^(y)$ ]
+  then
+    read -r -p "username:" user 
+    useradd -m -G wheel,audio,video $user 
+    passwd $user 
+  fi 
   grub-install --target=x86_64-efi --efi-directory=/efi 
   grub-mkconfig -o /boot/grub/grub.cfg
-  exit
+  reboot
+
 
