@@ -75,6 +75,7 @@ cls
   done
 cls
   read -n 1 -s -r -p "Press any key to CHAGE THE @WORLD"
+  echo
   echo "@world update is slow(wait ~20 min)"
   emerge $flags --update --deep --newuse @world &> /dev/null
   echo "UTC" > /etc/timezone
