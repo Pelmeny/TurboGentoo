@@ -39,10 +39,29 @@ function download
   file=$(cat ./sh-downloads/hash.txt | grep .tar)
   file=${file%.t*}
   file=${file#*rc-}
-  echo "stage3= "$file" !"
   cd /mnt/gentoo/
   curl -O https://distfiles.gentoo.org/releases/amd64/autobuilds/"$file"/stage3-amd64-openrc-"$file".tar.xz
   cd $pwd 
+}
+
+function cls
+{
+  clear
+  one='\e[0;91m'
+  two='\e[0;92m'
+  three='\e[0;93m'
+  four='\e[0;94m'
+  five='\e[0;95m'
+  red='\e[0;31m'
+  white='\e[0;97m'
+
+  echo -e "${one}  _____           _              ____            _              "
+  echo -e "${two} |_   _|   _ _ __| |__   ___    / ___| ___ _ __ | |_ ___   ___  "
+  echo -e "${three}   | || | | | '__| '_ \ / _ \  | |  _ / _ \ '_ \| __/ _ \ / _ \ "
+  echo -e "${four}   | || |_| | |  | |_) | (_) | | |_| |  __/ | | | || (_) | (_) |"
+  echo -e "${five}   |_| \__,_|_|  |_.__/ \___/   \____|\___|_| |_|\__\___/ \___/ "
+  echo -e "${white}"
+
 }
 
 function errchk
@@ -105,25 +124,13 @@ function install
   cp ./tochroot.sh /mnt/gentoo/ 
   arch-chroot /mnt/gentoo sh /tochroot.sh
 }
-one='\e[0;91m'
-two='\e[0;92m'
-three='\e[0;93m'
-four='\e[0;94m'
-five='\e[0;95m'
-red='\e[0;31m'
-white='\e[0;97m'
-
-echo -e "${one}  _____           _              ____            _              "
-echo -e "${two} |_   _|   _ _ __| |__   ___    / ___| ___ _ __ | |_ ___   ___  "
-echo -e "${three}   | || | | | '__| '_ \ / _ \  | |  _ / _ \ '_ \| __/ _ \ / _ \ "
-echo -e "${four}   | || |_| | |  | |_) | (_) | | |_| |  __/ | | | || (_) | (_) |"
-echo -e "${five}   |_| \__,_|_|  |_.__/ \___/   \____|\___|_| |_|\__\___/ \___/ "
-echo -e "${white}"
+cls
 echo "select texteditor"
 pwd=$(pwd)
-textedit 
+textedit
+cls
 nvmetest
-
+cls
 echo -e "select disk to install:"
 lsblk -nd
 end=0
@@ -150,19 +157,22 @@ read -n 1 -s -r -p "Press any key to run cfdisk"
 
 cfdisk /dev/$disk
 errchk
-mkfs.vfat -F32 /dev/"$disk""$p"1
+mkfs.vfat -F32 /dev/"$disk""$p"1 &> /dev/null
 errchk
-mkfs.ext4 /dev/"$disk""$p"2
+mkfs.ext4 /dev/"$disk""$p"2 &> /dev/null
 errchk
-
+cls
 echo "mounting disks..."
-mount --mkdir /dev/"$disk""$p"2 /mnt/gentoo
+mount --mkdir /dev/"$disk""$p"2 /mnt/gentoo 
 errchk
 mount --mkdir /dev/"$disk""$p"1 /mnt/gentoo/efi
 errchk
-download
-untar
+cls
+echo "download stage3.."
+download &> /dev/null
+untar &> /dev/null
 makeconf
+cls
 install
 rm -rf /mnt/gentoo/tochroot.sh 
 rm -rf /mnt/gentoo/$file
