@@ -78,13 +78,17 @@ cls
   echo
   echo "@world update is slow(wait ~20 min)"
   emerge $flags --update --deep --newuse @world &> /dev/null
+  
   echo "UTC" > /etc/timezone
   echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+  
   locale-gen 
   eselect locale set 2 
   touch /etc/portage/package.use/installkernel
+  
   echo 'installing kernel...'
   echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/installkernel
+  
   emerge -vg sys-kernel/gentoo-kernel-bin &> /dev/null
   cls
   read -r -p "hostname: " hostname 
@@ -92,9 +96,11 @@ cls
   emerge -v net-misc/dhcpcd &> /dev/null
   rc-update add dhcpcd default &> /dev/null
   cls
+  
   echo "enter root password"
   passwd
   cls
+  
   echo "add new user (y/N)"
   read -r -p "choice: " yes
   if [ $yes == "y" ]
