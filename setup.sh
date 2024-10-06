@@ -166,7 +166,7 @@ cfdisk /dev/$disk
 errchk
 mkfs.vfat -F32 /dev/"$disk""$p"1
 errchk
-mkfs.xfs -f /dev/"$disk""$p"2
+mkfs.ext4 -f /dev/"$disk""$p"2
 errchk
 
 echo "formating complite"
