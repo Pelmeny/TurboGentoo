@@ -35,13 +35,13 @@ function download
 {
   mkdir ./sh-downloads
   curl -O https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-desktop-openrc/latest-stage3-amd64-desktop-openrc.txt
-  mv ./latest-stage3-amd64-desktop-openrc.txt ./sh-downloads/hash.txt
-  file=null
+  mv ./latest-stage3-amd64-desktop-openrc.txt ./sh-downloads/hash.txt 
   file=$(cat ./sh-downloads/hash.txt | grep .tar)
   file=${file%.t*}
+  file=${file#*rc-}
   echo "stage3= "$file" !"
   cd ./sh-downloads 
-  curl -O https://distfiles.gentoo.org/releases/amd64/autobuilds/current-stage3-amd64-desktop-openrc/"$file".tar.xz
+  curl -O https://distfiles.gentoo.org/releases/amd64/autobuilds/"$file"/stage3-amd64-openrc-"$file".tar.xz
   cd ../ 
 }
 
