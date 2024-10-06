@@ -55,12 +55,12 @@ function cls
   red='\e[0;31m'
   white='\e[0;97m'
 
-  echo -e "${one}  _____           _              ____            _              "
-  echo -e "${two} |_   _|   _ _ __| |__   ___    / ___| ___ _ __ | |_ ___   ___  "
-  echo -e "${three}   | || | | | '__| '_ \ / _ \  | |  _ / _ \ '_ \| __/ _ \ / _ \ "
-  echo -e "${four}   | || |_| | |  | |_) | (_) | | |_| |  __/ | | | || (_) | (_) |"
-  echo -e "${five}   |_| \__,_|_|  |_.__/ \___/   \____|\___|_| |_|\__\___/ \___/ "
-  echo -e "${white}"
+  echo -e "
+${one}┏┓           ┳      ┓┓
+${two}┃┓┏┓┏┓╋┏┓┏┓  ┃┏┓┏╋┏┓┃┃┏┓┏┓
+${three}┗┛┗ ┛┗┗┗┛┗┛  ┻┛┗┛┗┗┻┗┗┗ ┛ 
+${white}
+"
 
 }
 
@@ -116,11 +116,24 @@ function install
   cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
   echo
 
-  echo "genfstab..."
+  clear
+  echo -e "
+${one}┏┓    ┏┓┏┓┏┳┓  ┓    
+${two}┃┓┏┓┏┓┣ ┗┓ ┃ ┏┓┣┓   
+${three}┗┛┗ ┛┗┻ ┗┛ ┻ ┗┻┗┛•••
+${white}
+  "
   genfstab -U /mnt/gentoo >> /mnt/gentoo/etc/fstab
   echo
 
-  echo "chroot"
+  clear
+  echo -e "
+${one}┏┓┓        •       
+${two}┃ ┣┓┏┓┏┓┏┓╋┓┏┓┏┓   
+${three}┗┛┛┗┛ ┗┛┗┛┗┗┛┗┗┫•••
+${four}               ┛  
+${white}
+  "
   cp ./tochroot.sh /mnt/gentoo/ 
   arch-chroot /mnt/gentoo sh /tochroot.sh
 }
