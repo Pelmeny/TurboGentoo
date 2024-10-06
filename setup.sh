@@ -40,9 +40,9 @@ function download
   file=${file%.t*}
   file=${file#*rc-}
   echo "stage3= "$file" !"
-  cd ./sh-downloads 
+  cd /mnt/gentoo/
   curl -O https://distfiles.gentoo.org/releases/amd64/autobuilds/"$file"/stage3-amd64-openrc-"$file".tar.xz
-  cd ../ 
+  cd $pwd 
 }
 
 function errchk
@@ -57,8 +57,6 @@ function errchk
 }
 function untar
 {
-  pwd=$(pwd)
-  cp ./sh-downloads/stage3-amd64-openrc-"$file".tar.xz /mnt/gentoo
   cd /mnt/gentoo
   tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
   cd $pwd
@@ -122,6 +120,7 @@ echo -e "${four}   | || |_| | |  | |_) | (_) | | |_| |  __/ | | | || (_) | (_) |
 echo -e "${five}   |_| \__,_|_|  |_.__/ \___/   \____|\___|_| |_|\__\___/ \___/ "
 echo -e "${white}"
 echo "select texteditor"
+pwd=$(pwd)
 textedit 
 nvmetest
 
@@ -156,16 +155,12 @@ errchk
 mkfs.ext4 /dev/"$disk""$p"2
 errchk
 
-echo "formating complite"
-echo "downloading stage3..."
-download
-
 echo "mounting disks..."
 mount --mkdir /dev/"$disk""$p"2 /mnt/gentoo
 errchk
 mount --mkdir /dev/"$disk""$p"1 /mnt/gentoo/efi
 errchk
-
+download
 untar
 makeconf
 install
