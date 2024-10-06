@@ -3,14 +3,11 @@
 
 function arch 
 {
-su -c 'pacman -Syyuu'
 su -c 'pacman -S --noconfirm wget'
 }
 
 function gentoo
 {
-su -c 'emerge-webrsync'
-su -c 'emerge -sync'
 su -c 'emerge -vg wget sys-fs/genfstab vim'
 }
 
