@@ -18,7 +18,6 @@ echo "installing gentoo"
   getuto
   emerge -vg app-portage/mirrorselect app-portage/cpuid2cpuflags sys-boot/grub efibootmgr
   mirrorselect -i -o >> /etc/portage/make.conf
-  emerge --sync
   end=0
 
   echo
