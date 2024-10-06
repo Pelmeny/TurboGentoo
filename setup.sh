@@ -58,7 +58,7 @@ function errchk
 function untar
 {
   pwd=$(pwd)
-  cp ./sh-downloads/stage3-amd64-desktop-openrc-20240929T163611Z.tar.xz /mnt/gentoo
+  cp ./sh-downloads/stage3-amd64-openrc-"$file".tar.xz /mnt/gentoo
   cd /mnt/gentoo
   tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
   cd $pwd
