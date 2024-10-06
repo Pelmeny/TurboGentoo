@@ -90,7 +90,7 @@ cls
   echo 'sys-kernel/installkernel dracut' >> /etc/portage/package.use/installkernel
   
   emerge -vg sys-kernel/gentoo-kernel-bin &> /dev/null
-  cls
+cls
   read -r -p "hostname: " hostname 
   echo $hostname >> /etc/hostname
   emerge -v net-misc/dhcpcd &> /dev/null
@@ -99,7 +99,7 @@ cls
   
   echo "enter root password"
   passwd
-  cls
+cls
   
   echo "add new user (y/N)"
   read -r -p "choice: " yes
